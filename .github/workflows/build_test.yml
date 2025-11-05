@@ -39,3 +39,15 @@ jobs:
       uses: snyk/actions/maven@master
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+  send_telegram_message:
+    needs: build_test
+    runs-on: ubuntu-latest
+    steps:
+    - name: send telegram message on push
+      uses: appleboy/telegram-action@master
+      with:
+        to: ${{ secrets.TELEGRAM_TO }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
+        message: |
+          Build and Test Successful! You may proceed to deploy.
