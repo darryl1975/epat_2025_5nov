@@ -1,5 +1,6 @@
 # first stage
-FROM openjdk:23-ea-23-jdk-oraclelinux9 AS builder
+# FROM openjdk:23-ea-23-jdk-oraclelinux9 AS builder
+FROM openjdk:26-ea-17-jdk-oraclelinux9
 
 WORKDIR /app
 
@@ -11,7 +12,8 @@ COPY pom.xml .
 RUN ./mvnw package -DskipTests=true
 
 # second stage
-FROM openjdk:23-ea-23-jdk-oraclelinux9
+# FROM openjdk:23-ea-23-jdk-oraclelinux9
+FROM openjdk:26-ea-17-jdk-oraclelinux9
 
 WORKDIR /runningapp
 
